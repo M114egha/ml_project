@@ -15,13 +15,13 @@ from src.components.data_transformation import DataTransformationConfig
 from src.components.model_trainer import ModelTrainerConfig
 from src.components.model_trainer import ModelTrainer
 
-@dataclass
-class DataIngestionConfig:
-    train_data_path: str = os.path.join('artifacts' , "train.csv")
+@dataclass     #Defines paths for storing raw, train, and test CSV files in the artifacts folder using a dataclass.
+class DataIngestionConfig:    #Configuration class for data ingestion.
+    train_data_path: str = os.path.join('artifacts' , "train.csv") 
     test_data_path: str = os.path.join('artifacts' , "test.csv")
     raw_data_path: str = os.path.join('artifacts' , "data.csv")
 
-class DataIngestion:
+class DataIngestion:  #creates an object of DataIngestionConfig and defines a method to initiate data ingestion.
     def __init__(self):
         self.ingestion_config=DataIngestionConfig()
 
@@ -54,8 +54,7 @@ class DataIngestion:
 
 if __name__=="__main__":
     obj=DataIngestion()
-    train_data, test_data=obj.initiate_data_ingestion()
-
+    train_data, test_data=obj.initiate_data_ingestion() #initiate_data_ingestion method is called to get the train and test data paths.
     data_transformation=DataTransformation()
     train_arr , test_arr,_=data_transformation.initiate_data_transformation(train_data, test_data)
 
